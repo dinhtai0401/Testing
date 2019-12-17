@@ -32,7 +32,7 @@ class MainPage extends Component {
     });
   }
   addBook() {
-    axios.post('http://localhost:3000/book', this.state.newBookData).then((response) => {
+    axios.post('http://localhost:9000/book', this.state.newBookData).then((response) => {
       let { books } = this.state;
 
       books.push(response.data);
@@ -46,7 +46,7 @@ class MainPage extends Component {
   updateBook() {
     let { title, rating } = this.state.editBookData;
 
-    axios.put('http://localhost:3000/book' + this.state.editBookData.id, {
+    axios.put('http://localhost:9000/book' + this.state.editBookData.id, {
       title, rating
     }).then((response) => {
       this._refreshBooks();
@@ -62,12 +62,12 @@ class MainPage extends Component {
     });
   }
   deleteBook(id) {
-    axios.delete('http://localhost:3000/book/' + id).then((response) => {
+    axios.delete('http://localhost:9000/book/' + id).then((response) => {
       this._refreshBooks();
     });
   }
   _refreshBooks() {
-    axios.get('http://localhost:3000/book').then((response) => {
+    axios.get('http://localhost:9000/book').then((response) => {
       this.setState({
         books: response.data
       })
